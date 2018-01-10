@@ -1,0 +1,21 @@
+﻿@model ASP.NETIdentity.Models.CreateModel
+@{ ViewBag.Title = "Create User";}
+<h2>Create User</h2>
+@Html.ValidationSummary(false)
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+       @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+}
