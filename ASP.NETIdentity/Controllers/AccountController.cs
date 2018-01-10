@@ -33,8 +33,9 @@ namespace ASP.NETIdentity.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
+                return View("Error", new string[] { "Access Denied" });
             }
             ViewBag.returnUrl = returnUrl;
             return View();
@@ -48,6 +49,7 @@ namespace ASP.NETIdentity.Controllers
             {
                 AppUser user = await UserManager.FindAsync(details.Name,
                     details.Password);
+
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Invalid name or password.");
@@ -66,6 +68,14 @@ namespace ASP.NETIdentity.Controllers
             }
             ViewBag.returnUrl = returnUrl;
             return View(details);
+        }
+
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            AuthManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
