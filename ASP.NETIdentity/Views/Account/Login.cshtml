@@ -2,11 +2,12 @@
 @{ ViewBag.Title = "Login";}
 <h2>Log In</h2>
 @Html.ValidationSummary()
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken();
     <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
     <div class="form-group">
-      @Html.LabelFor(x => x.Name)
+        @Html.LabelFor(x => x.Name)
         @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
     </div>
     <div class="form-group">
@@ -14,4 +15,9 @@
         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
     </div>
     <button class="btn btn-primary" type="submit">Log In</button>
+}
+
+@using (Html.BeginForm("GoogleLogin", "Account")) {
+<input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+<button class="btn btn-primary" type="submit">Log In via Google</button>
 }
