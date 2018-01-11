@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace ASP.NETIdentity.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
         private AppUserManager UserManager

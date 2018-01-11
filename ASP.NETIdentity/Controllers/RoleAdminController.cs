@@ -12,12 +12,13 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace ASP.NETIdentity.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class RoleAdminController : Controller
     {
         // GET: RoleAdmin
         public ActionResult Index()
         {
-            return View(RoleManager.Roles);
+            return View(RoleManager.Roles.ToList());
         }
         public ActionResult Create()
         {
